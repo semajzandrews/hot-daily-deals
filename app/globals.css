@@ -1,0 +1,83 @@
+@import "tailwindcss";
+
+/* Edgar Jewelry · Tokens
+   Lineage: Tiffany catalog + diamond facet motif + jewelry-box velvet
+   + Vogue editorial. Hushed, expensive, museum-light. */
+@theme {
+  --color-velvet:    #1A0F1E;     /* deep velvet aubergine */
+  --color-velvet-2:  #25172A;
+  --color-velvet-3:  #382439;
+  --color-diamond:   #F5F2EE;     /* warm diamond white */
+  --color-diamond-2: #E4DED4;
+  --color-champagne: #C9A961;     /* champagne gold */
+  --color-champagne-2:#A88842;
+  --color-rose:      #C28999;     /* dusted rose */
+  --color-jet:       #0A0510;
+  --color-rule:      rgba(245,242,238,0.15);
+  --color-rule-2:    rgba(245,242,238,0.35);
+
+  --font-display: "Bodoni Moda", "Didot", Georgia, ui-serif, serif;
+  --font-body:    "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-script:  "Italiana", ui-serif, serif;
+}
+
+@layer base {
+  :root {
+    --velvet:#1A0F1E; --velvet-2:#25172A; --velvet-3:#382439;
+    --diamond:#F5F2EE; --diamond-2:#E4DED4;
+    --champagne:#C9A961; --champagne-2:#A88842;
+    --rose:#C28999; --jet:#0A0510;
+    --rule:rgba(245,242,238,0.15); --rule-2:rgba(245,242,238,0.35);
+  }
+  html, body {
+    background: var(--velvet);
+    color: var(--diamond);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection { background: var(--champagne); color: var(--velvet); }
+}
+
+/* Velvet noise (very faint warm grain) */
+.velvet-grain {
+  background-image:
+    radial-gradient(rgba(245,242,238,0.025) 1px, transparent 1px),
+    radial-gradient(rgba(201,169,97,0.018) 1px, transparent 1.5px);
+  background-size: 3px 3px, 7px 7px;
+}
+
+/* Champagne hairline divider */
+.gold-rule {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--champagne) 30%, var(--champagne) 70%, transparent);
+}
+
+/* Facet light sweep (signature) */
+@keyframes facet-sweep {
+  0% { transform: translateX(-120%) skewX(-25deg); opacity: 0; }
+  20% { opacity: 0.45; }
+  80% { opacity: 0.45; }
+  100% { transform: translateX(220%) skewX(-25deg); opacity: 0; }
+}
+.facet-sweep {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 30%, rgba(245,242,238,0.55) 50%, transparent 70%);
+  animation: facet-sweep 6s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* Slow rotation for diamond SVG */
+@keyframes spin-slow { to { transform: rotate(360deg); } }
+.spin-slow { animation: spin-slow 30s linear infinite; transform-origin: 50% 50%; }
+
+/* Gentle reveal */
+@keyframes shimmer {
+  0%, 100% { opacity: 0.85; }
+  50% { opacity: 1; }
+}
+.shimmer { animation: shimmer 4s ease-in-out infinite; }
+
+.tabnum { font-variant-numeric: tabular-nums; }
+.font-display { font-family: var(--font-display); font-weight: 400; letter-spacing: -0.02em; }
+.font-script  { font-family: var(--font-script); }
