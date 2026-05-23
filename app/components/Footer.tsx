@@ -31,7 +31,7 @@ export default function Footer() {
         <div className="gold-rule mt-12" />
         <div className="mt-6 flex flex-wrap items-center justify-between gap-4 text-[10px] uppercase tracking-[0.28em] text-diamond/50">
           <span>© {new Date().getFullYear()} Edgar Jewelry · Central Ave · Orange, NJ</span>
-          <span className="font-script italic normal-case text-base text-champagne">Built · bysemaj.com</span>
+          <span className="font-script italic normal-case text-base text-champagne"><a href="https://bysemaj.com" target="_blank" rel="noreferrer" className="underline-offset-4 hover:underline transition-opacity hover:opacity-80">Built · bysemaj.com</a></span>
         </div>
       </div>
     </footer>
