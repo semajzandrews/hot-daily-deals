@@ -17,14 +17,14 @@ export default function Collection() {
   return (
     <section id="collection" className="relative py-24 md:py-36">
       <div className="mx-auto max-w-[1380px] px-6 md:px-10">
-        <div className="mb-16 grid grid-cols-12 items-end gap-6">
-          <div className="col-span-12 md:col-span-7">
+        <div className="mb-16 grid grid-cols-1 items-end gap-6 md:grid-cols-12">
+          <div className="md:col-span-7">
             <div className="text-[10px] uppercase tracking-[0.3em] text-champagne">I · Selected work</div>
             <h2 className="mt-3 font-display text-[clamp(2.4rem,5.5vw,5rem)] leading-[1.02] tracking-[-0.01em] text-diamond">
               Six pieces. <span className="italic">Six small stories.</span>
             </h2>
           </div>
-          <p className="col-span-12 max-w-md text-diamond/70 md:col-span-5 md:pb-3">
+          <p className="max-w-md text-diamond/70 md:col-span-5 md:pb-3">
             Each piece begins as a conversation. Stones we&apos;ve been
             holding, settings we&apos;ve been waiting to use. None
             of it on the shelf.

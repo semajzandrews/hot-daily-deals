@@ -34,6 +34,9 @@
     color: var(--diamond);
     font-family: var(--font-body);
     -webkit-font-smoothing: antialiased;
+    /* Contain decorative/transform bleed so mobile browsers don't expand the
+       layout viewport past device-width (was inflating to ~552px on 375 phones). */
+    overflow-x: clip;
   }
   ::selection { background: var(--champagne); color: var(--velvet); }
 }

@@ -12,8 +12,8 @@ export default function Atelier() {
   return (
     <section id="atelier" className="relative py-24 md:py-36">
       <div className="mx-auto max-w-[1380px] px-6 md:px-10">
-        <div className="grid grid-cols-12 gap-12">
-          <div className="col-span-12 md:col-span-5">
+        <div className="grid grid-cols-1 gap-12 md:grid-cols-12">
+          <div className="md:col-span-5">
             <div className="text-[10px] uppercase tracking-[0.3em] text-champagne">III · The atelier</div>
             <h2 className="mt-3 font-display text-[clamp(2.4rem,5vw,4.6rem)] leading-[1.02] text-diamond">
               A bench. <br/>
@@ -35,7 +35,7 @@ export default function Atelier() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.9 }}
-            className="col-span-12 md:col-span-7 space-y-6 text-lg leading-relaxed text-diamond/80"
+            className="md:col-span-7 space-y-6 text-lg leading-relaxed text-diamond/80"
           >
             <p>
               Edgar Jewelry is a one-bench atelier on Central Avenue. The

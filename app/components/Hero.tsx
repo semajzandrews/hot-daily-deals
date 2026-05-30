@@ -65,9 +65,9 @@ export default function Hero() {
         </div>
 
         {/* Asymmetric layout — diamond floats on the right offset above */}
-        <div className="relative grid grid-cols-12 gap-x-6 gap-y-12 items-start">
+        <div className="relative grid grid-cols-1 gap-x-6 gap-y-12 items-start lg:grid-cols-12">
           {/* Headline — left column, drops below */}
-          <div className="col-span-12 lg:col-span-7 lg:pt-32 relative z-10">
+          <div className="lg:col-span-7 lg:pt-32 relative z-10">
             <h1 className="font-display text-[clamp(3rem,8vw,8rem)] leading-[0.95] tracking-[-0.015em] text-diamond">
               <motion.span initial={{ y: 40, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 1, delay: 0.05 }} className="block">
                 Heirloom craft.
@@ -94,7 +94,7 @@ export default function Hero() {
           </div>
 
           {/* Diamond — right, overlapping/floating */}
-          <div className="col-span-12 lg:col-span-5 lg:absolute lg:top-0 lg:right-0 lg:w-[40%]">
+          <div className="lg:col-span-5 lg:absolute lg:top-0 lg:right-0 lg:w-[40%]">
             <motion.div initial={{ opacity: 0, scale: 0.92 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 1.4, delay: 0.1 }} className="relative aspect-square w-full">
               <div className="absolute inset-0 rounded-full bg-gradient-to-br from-champagne/30 via-velvet-3/40 to-velvet blur-2xl" />
               <Diamond />
