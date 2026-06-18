@@ -1,36 +1,95 @@
 "use client";
+
 import { useEffect, useState } from "react";
 
-const LINKS = [
-  { label: "Collection", href: "#collection" },
-  { label: "Custom", href: "#custom" },
-  { label: "Atelier", href: "#atelier" },
-  { label: "Visit", href: "#visit" },
+const links = [
+  { href: "#drop", label: "The Daily Drop" },
+  { href: "#hunt", label: "The Hunt" },
+  { href: "#finds", label: "Finds" },
+  { href: "#visit", label: "Visit" },
 ];
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
+  const [open, setOpen] = useState(false);
+
   useEffect(() => {
-    const f = () => setScrolled(window.scrollY > 24);
-    f(); window.addEventListener("scroll", f, { passive: true });
-    return () => window.removeEventListener("scroll", f);
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
   return (
-    <header className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${scrolled ? "bg-velvet/85 backdrop-blur-xl border-b border-rule" : "bg-transparent border-b border-transparent"}`}>
-      <div className="mx-auto flex h-16 max-w-[1380px] items-center justify-between px-5 md:px-10">
-        <a href="#top" className="flex items-baseline gap-2">
-          <span className="font-display text-2xl tracking-tight text-diamond">Edgar</span>
-          <span className="font-script text-base text-champagne -ml-1">Jewelry</span>
+    <header
+      className="fixed top-0 inset-x-0 z-50 transition-all duration-300"
+      style={{
+        background: scrolled ? "rgba(244,240,231,0.86)" : "transparent",
+        backdropFilter: scrolled ? "blur(10px) saturate(1.1)" : "none",
+        borderBottom: scrolled ? "1px solid var(--rule)" : "1px solid transparent",
+      }}
+    >
+      <nav className="mx-auto max-w-6xl px-5 sm:px-8 h-16 sm:h-20 flex items-center justify-between">
+        <a href="#top" className="flex items-baseline gap-2 group" aria-label="Hot Daily Deals home">
+          <span className="font-display text-xl sm:text-2xl tracking-tight">Hot Daily Deals</span>
+          <span
+            className="hidden sm:inline-block h-2 w-2 rounded-full"
+            style={{ background: "var(--pine)" }}
+            aria-hidden
+          />
         </a>
-        <nav className="hidden items-center gap-10 md:flex">
-          {LINKS.map((l) => (
-            <a key={l.href} href={l.href} className="text-[12px] font-medium uppercase tracking-[0.22em] text-diamond/70 hover:text-champagne transition-colors">{l.label}</a>
+
+        <div className="hidden md:flex items-center gap-8">
+          {links.map((l) => (
+            <a
+              key={l.href}
+              href={l.href}
+              className="text-sm font-semibold tracking-wide text-[var(--ink-2)] hover:text-[var(--pine-2)] transition-colors"
+            >
+              {l.label}
+            </a>
           ))}
-        </nav>
-        <a href="#visit" className="group inline-flex items-center gap-2 rounded-none border border-champagne px-5 py-2.5 text-[10px] font-medium uppercase tracking-[0.24em] text-champagne hover:bg-champagne hover:text-velvet transition-colors">
-          By appointment
-        </a>
-      </div>
+          <a href="#visit" className="btn-pine text-sm">
+            Find the store
+          </a>
+        </div>
+
+        <button
+          className="md:hidden inline-flex flex-col gap-[5px] p-2 -mr-2"
+          aria-label="Menu"
+          onClick={() => setOpen((v) => !v)}
+        >
+          <span
+            className="block h-[2px] w-6 bg-[var(--ink)] transition-transform"
+            style={{ transform: open ? "translateY(7px) rotate(45deg)" : "none" }}
+          />
+          <span className="block h-[2px] w-6 bg-[var(--ink)] transition-opacity" style={{ opacity: open ? 0 : 1 }} />
+          <span
+            className="block h-[2px] w-6 bg-[var(--ink)] transition-transform"
+            style={{ transform: open ? "translateY(-7px) rotate(-45deg)" : "none" }}
+          />
+        </button>
+      </nav>
+
+      {open && (
+        <div className="md:hidden border-t border-[var(--rule)] bg-[var(--paper)]">
+          <div className="px-5 py-4 flex flex-col gap-1">
+            {links.map((l) => (
+              <a
+                key={l.href}
+                href={l.href}
+                onClick={() => setOpen(false)}
+                className="py-3 text-base font-semibold border-b border-[var(--rule)]"
+              >
+                {l.label}
+              </a>
+            ))}
+            <a href="#visit" onClick={() => setOpen(false)} className="btn-pine mt-4 justify-center">
+              Find the store
+            </a>
+          </div>
+        </div>
+      )}
     </header>
   );
 }

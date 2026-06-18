@@ -1,22 +1,33 @@
 import type { Metadata } from "next";
-import { Bodoni_Moda, Inter, Italiana } from "next/font/google";
+import { Manrope } from "next/font/google";
 import SmoothScroll from "./components/SmoothScroll";
 import "./globals.css";
 
-const display = Bodoni_Moda({ variable: "--font-display", subsets: ["latin"], weight: ["400","500","600"], style: ["normal","italic"] });
-const body = Inter({ variable: "--font-body", subsets: ["latin"] });
-const script = Italiana({ variable: "--font-script", subsets: ["latin"], weight: ["400"] });
+const body = Manrope({ variable: "--font-body", subsets: ["latin"], weight: ["400", "500", "600", "700"] });
 
 export const metadata: Metadata = {
-  title: "Edgar Jewelry — Heirloom craft on Central Ave, Orange NJ",
-  description: "Hand-set diamonds, custom rings, repairs, and appraisals. A 99-review neighborhood jeweler kept quietly excellent on Central Avenue, Orange NJ.",
-  openGraph: { title: "Edgar Jewelry · Orange NJ", description: "Heirloom craft. Custom + repairs.", type: "website" },
+  metadataBase: new URL("https://hot-daily-deals.vercel.app"),
+  title: "Hot Daily Deals — The bin store where the price drops every day · Orange, NJ",
+  description:
+    "Brand-new Amazon overstock and returns, restocked every week on Main Street in Orange, New Jersey. One flat price across the whole store, and it falls a little lower every single day. Come early for the pick, come late for the steal.",
+  openGraph: {
+    title: "Hot Daily Deals · Orange, NJ",
+    description: "The bin store where the price drops every day. Brand-new finds, restocked weekly on Main St.",
+    type: "website",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${display.variable} ${body.variable} ${script.variable} antialiased`}>
-      <body className="bg-velvet text-diamond velvet-grain min-h-screen">
+    <html lang="en" suppressHydrationWarning className={`${body.variable} antialiased`}>
+      <head>
+        <link rel="preconnect" href="https://api.fontshare.com" crossOrigin="anonymous" />
+        <link
+          rel="stylesheet"
+          href="https://api.fontshare.com/v2/css?f[]=gambetta@400,401,500,501,600,601,700&display=swap"
+        />
+      </head>
+      <body className="hdd-body min-h-screen">
         <SmoothScroll>{children}</SmoothScroll>
       </body>
     </html>
