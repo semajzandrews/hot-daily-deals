@@ -1,8 +1,11 @@
 import type { NextConfig } from "next";
 
+// Static export. REVIEW_PREFIX sets assetPrefix only for local subpath review
+// builds; Vercel builds with it unset -> correct root-absolute paths in prod.
 const nextConfig: NextConfig = {
-  // Single Lenis instance in dev to match prod (StrictMode double-mount fights Lenis).
-  reactStrictMode: false,
+  output: "export",
+  images: { unoptimized: true },
+  ...(process.env.REVIEW_PREFIX ? { assetPrefix: process.env.REVIEW_PREFIX } : {}),
 };
 
 export default nextConfig;
