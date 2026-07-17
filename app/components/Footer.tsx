@@ -64,7 +64,7 @@ export default function Footer() {
         <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-[0.78rem] text-[var(--ink-3)]">
           <p>© {new Date().getFullYear()} Hot Daily Deals · Orange, New Jersey</p>
           <p>
-            Built by{" "}
+            built{" "}
             <a
               href="https://bysemaj.com"
               target="_blank"
